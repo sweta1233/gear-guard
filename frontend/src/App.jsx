@@ -10,6 +10,8 @@ import Login from "./pages/Login";
 import Equipment from "./pages/Equipment";
 import Maintenance from "./pages/Maintenance";
 import Signup from "./pages/Signup";
+import Teams from "./pages/Teams";
+import MaintenanceCalendar from "./pages/MaintenanceCalendar";
 
 function App() {
   return (
@@ -38,6 +40,25 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Maintenance />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/teams"
+              element={
+                <ProtectedRoute>
+                  <Teams />
+                </ProtectedRoute>
+              }
+            />
+
+
+            <Route
+              path="/calendar"
+              element={
+                <ProtectedRoute>
+                  <MaintenanceCalendar />
                 </ProtectedRoute>
               }
             />

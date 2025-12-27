@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import api from "../api/api";
 
 function Signup() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function Signup() {
     setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!form.name || !form.email || !form.password) {
@@ -32,11 +33,16 @@ function Signup() {
 
     setLoading(true);
 
-    // 🔗 Replace with backend API later
-    setTimeout(() => {
+    try {
+      await api.post("/auth/signup", form);
       navigate("/login");
+    } catch (err) {
+      setError(
+        err.response?.data?.detail || "Signup failed"
+      );
+    } finally {
       setLoading(false);
-    }, 1200);
+    }
   };
 
   return (
