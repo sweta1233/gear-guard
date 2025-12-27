@@ -33,3 +33,8 @@ class MaintenanceResponse(MaintenanceCreate):
 
     class Config:
         from_attributes = True
+
+
+class StatusUpdate(BaseModel):
+    status: str              # in_progress | repaired | scrap
+    duration_hours: Optional[float] = None
